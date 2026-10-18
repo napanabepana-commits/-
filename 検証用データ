@@ -1,0 +1,155 @@
+/**
+ * クイズデータ検証用プログラム (validate-data.js)
+ * アプリ本体とは独立して実行し、データの構造的不備や不整合を検出します。
+ */
+
+function runQuizDataValidation() {
+  console.group("🔍 英語例文クイズデータ検証レポート");
+
+  if (typeof window === 'undefined' || !window.QUIZ_DATA) {
+    console.error("❌ エラー: クイズデータ (window.QUIZ_DATA) が見つかりません。");
+    console.groupEnd();
+    return { success: false, errors: 1, warnings: 0 };
+  }
+
+  const data = window.QUIZ_DATA;
+  let errorCount = 0;
+  let warningCount = 0;
+  const idSet = new Set();
+  const expectedTotal = 90; // 609〜698の期待値
+
+  if (data.length !== expectedTotal) {
+    warningCount++;
+    console.warn(`⚠️ 警告: 問題数が期待値 (${expectedTotal}問) と異なります。現在の問題数: ${data.length}問`);
+  } else {
+    console.log(`ℹ️ 問題数チェック: OK (${data.length}問)`);
+  }
+
+  data.forEach((q, index) => {
+    const label = `[配列インデックス ${index}, ID: ${q.id ?? '不明'}]`;
+
+    // 1. 基本構造・必須項目の検証
+    if (q.id === undefined || typeof q.id !== 'number') {
+      errorCount++;
+      console.error(`❌ エラー ${label}: id が欠落しているか、数値ではありません。`);
+    } else {
+      if (idSet.has(q.id)) {
+        errorCount++;
+        console.error(`❌ エラー ${label}: ID ${q.id} が重複しています。`);
+      }
+      idSet.add(q.id);
+    }
+
+    if (!q.jp || typeof q.jp !== 'string' || q.jp.trim() === '') {
+      errorCount++;
+      console.error(`❌ エラー ${label}: 日本語文 (jp) が空または文字列ではありません。`);
+    }
+
+    if (!q.en || typeof q.en !== 'string' || q.en.trim() === '') {
+      errorCount++;
+      console.error(`❌ エラー ${label}: 英語文 (en) が空または文字列ではありません。`);
+    }
+
+    if (q.important !== undefined && typeof q.important !== 'boolean') {
+      warningCount++;
+      console.warn(`⚠️ 警告 ${label}: important フラグが真偽値ではありません。`);
+    }
+
+    // 2. blanks (穴埋め) の検証
+    try {
+      if (!Array.isArray(q.blanks)) {
+        errorCount++;
+        console.error(`❌ エラー ${label}: blanks が配列ではありません。`);
+      } else {
+        q.blanks.forEach((b, bIdx) => {
+          if (!b.sentence || typeof b.sentence !== 'string') {
+            errorCount++;
+            console.error(`❌ エラー ${label} [空白index ${bIdx}]: sentence が不正です。`);
+          }
+          if (!Array.isArray(b.choices) || b.choices.length === 0) {
+            errorCount++;
+            console.error(`❌ エラー ${label} [空白index ${bIdx}]: choices が空または配列ではありません。`);
+          } else {
+            b.choices.forEach(c => {
+              if (typeof c !== 'string' || c.trim() === '') {
+                errorCount++;
+                console.error(`❌ エラー ${label} [空白index ${bIdx}]: 選択肢に空文字または非文字列が含まれています。`);
+              }
+            });
+            // 選択肢の重複チェック
+            const uniqueChoices = new Set(b.choices);
+            if (uniqueChoices.size !== b.choices.length) {
+              warningCount++;
+              console.warn(`⚠️ 警告 ${label} [空白index ${bIdx}]: 選択肢に重複があります。`);
+            }
+          }
+          if (!b.answer || typeof b.answer !== 'string' || !b.choices.includes(b.answer)) {
+            errorCount++;
+            console.error(`❌ エラー ${label} [空白index ${bIdx}]: answer (${b.answer}) が選択肢の中に存在しません。`);
+          }
+        });
+      }
+    } catch (e) {
+      errorCount++;
+      console.error(`❌ 例外エラー ${label} (blanks検証中):`, e);
+    }
+
+    // 3. sortWords (並べ替え) の検証
+    try {
+      if (!Array.isArray(q.sortWords) || q.sortWords.length === 0) {
+        errorCount++;
+        console.error(`❌ エラー ${label}: sortWords が配列ではないか空です。`);
+      } else {
+        q.sortWords.forEach(w => {
+          if (typeof w !== 'string' || w.trim() === '') {
+            errorCount++;
+            console.error(`❌ エラー ${label}: sortWords に不正な要素が含まれています。`);
+          }
+        });
+        // 英文と並べ替え単語の簡易結合一致チェック (空白や記号を考慮した単語単位確認)
+        const reconstructed = q.sortWords.join('');
+        const rawEn = q.en.replace(/\s+/g, '');
+        const reconNoSpace = reconstructed.replace(/\s+/g, '');
+        if (reconNoSpace !== rawEn) {
+          warningCount++;
+          console.warn(`⚠️ 警告 ${label}: sortWords の結合結果 ("${reconstructed}") が英文 ("${q.en}") と完全に一致しません（記号や空白の持ち方に起因する可能性があります）。`);
+        }
+      }
+    } catch (e) {
+      errorCount++;
+      console.error(`❌ 例外エラー ${label} (sortWords検証中):`, e);
+    }
+
+    // 4. transChoices (和訳四択) の検証
+    try {
+      if (!Array.isArray(q.transChoices) || q.transChoices.length === 0) {
+        errorCount++;
+        console.error(`❌ エラー ${label}: transChoices が配列ではないか空です。`);
+      } else {
+        if (!q.transChoices.includes(q.jp)) {
+          errorCount++;
+          console.error(`❌ エラー ${label}: transChoices の中に正解の日本語文 (jp) が含まれていません。`);
+        }
+      }
+    } catch (e) {
+      errorCount++;
+      console.error(`❌ 例外エラー ${label} (transChoices検証中):`, e);
+    }
+  });
+
+  console.log("--------------------------------------------------");
+  console.log(`📊 検証完了: エラー ${errorCount}件, 警告 ${warningCount}件, 総問題数 ${data.length}問`);
+  console.groupEnd();
+
+  return {
+    success: errorCount === 0,
+    errors: errorCount,
+    warnings: warningCount,
+    total: data.length
+  };
+}
+
+// 自動実行（ブラウザコンソール用）
+if (typeof window !== 'undefined') {
+  window.runQuizDataValidation = runQuizDataValidation;
+}
