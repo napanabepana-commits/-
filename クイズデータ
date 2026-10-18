@@ -1,0 +1,1262 @@
+Window.QUIZ_DATA = [
+  {
+    id: 609,
+    important: true,
+    jp: "その本はとてもおもしろかったので、1日で読んだ。",
+    en: "The book was so interesting that I read it in a day.",
+    blanks: [{ sentence: "The book was (  ) interesting that I read it in a day.", choices: ["so", "such", "too", "very"], answer: "so" }],
+    sortWords: ["The book", "was", "so", "interesting", "that", "I", "read", "it", "in", "a", "day", "."],
+    transChoices: [
+      "その本はとてもおもしろかったので、1日で読んだ。",
+      "それはとてもおもしろい本だったので、1日で読んだ。",
+      "始発列車に乗るために、私は朝早く起きなければならない。",
+      "雨が降るといけないから傘を持って行きなさい。"
+    ]
+  },
+  {
+    id: 610,
+    important: false,
+    jp: "それはとてもおもしろい本だったので、1日で読んだ。",
+    en: "It was such an interesting book that I read it in a day.",
+    blanks: [{ sentence: "It was (  ) an interesting book that I read it in a day.", choices: ["such", "so", "very", "quite"], answer: "such" }],
+    sortWords: ["It", "was", "such", "an", "interesting", "book", "that", "I", "read", "it", "in", "a", "day", "."],
+    transChoices: [
+      "それはとてもおもしろい本だったので、1日で読んだ。",
+      "その本はとてもおもしろかったので、1日で読んだ。",
+      "殺されるといけないので彼は国を出た。",
+      "私は午前8時30分から午後5時まで学校にいます。"
+    ]
+  },
+  {
+    id: 611,
+    important: true,
+    jp: "始発列車に乗るために、私は朝早く起きなければならない。",
+    en: "I have to get up early so that I can catch the first train.",
+    blanks: [{ sentence: "I have to get up early (  ) that I can catch the first train.", choices: ["so", "in", "such", "as"], answer: "so" }],
+    sortWords: ["I", "have to", "get up", "early", "so that", "I", "can", "catch", "the", "first", "train", "."],
+    transChoices: [
+      "始発列車に乗るために、私は朝早く起きなければならない。",
+      "雨が降るといけないから傘を持って行きなさい。",
+      "私たちはバス停で待っていた。",
+      "彼は昨日ロンドンへ発ちました。"
+    ]
+  },
+  {
+    id: 612,
+    important: true,
+    jp: "雨が降るといけないから傘を持って行きなさい。",
+    en: "Take an umbrella in case it rains.",
+    blanks: [{ sentence: "Take an umbrella in (  ) it rains.", choices: ["case", "fact", "order", "time"], answer: "case" }],
+    sortWords: ["Take", "an", "umbrella", "in case", "it", "rains", "."],
+    transChoices: [
+      "雨が降るといけないから傘を持って行きなさい。",
+      "殺されるといけないので彼は国を出た。",
+      "部屋には誰もいなかった。",
+      "私は昨夜2時間勉強した。"
+    ]
+  },
+  {
+    id: 613,
+    important: true,
+    jp: "殺されるといけないので彼は国を出た。",
+    en: "He got out of the country for fear that he would be killed.",
+    blanks: [{ sentence: "He got out of the country for (  ) that he would be killed.", choices: ["fear", "scare", "doubt", "danger"], answer: "fear" }],
+    sortWords: ["He", "got out of", "the", "country", "for fear that", "he", "would be", "killed", "."],
+    transChoices: [
+      "殺されるといけないので彼は国を出た。",
+      "始発列車に乗るために、私は朝早く起きなければならない。",
+      "東京から京都までは約2時間かかります。",
+      "彼らは通りに沿って歩いた。"
+    ]
+  },
+  {
+    id: 614,
+    important: true,
+    jp: "私たちはバス停で待っていた。",
+    en: "We were waiting at the bus stop.",
+    blanks: [{ sentence: "We were waiting (  ) the bus stop.", choices: ["at", "on", "in", "by"], answer: "at" }],
+    sortWords: ["We", "were", "waiting", "at", "the", "bus", "stop", "."],
+    transChoices: [
+      "私たちはバス停で待っていた。",
+      "部屋には誰もいなかった。",
+      "彼は本をテーブルに置いた。",
+      "月曜日にお会いしましょう。"
+    ]
+  },
+  {
+    id: 615,
+    important: false,
+    jp: "部屋には誰もいなかった。",
+    en: "There was no one in the room.",
+    blanks: [{ sentence: "There was no one (  ) the room.", choices: ["in", "at", "on", "by"], answer: "in" }],
+    sortWords: ["There", "was", "no", "one", "in", "the", "room", "."],
+    transChoices: [
+      "部屋には誰もいなかった。",
+      "私たちはバス停で待っていた。",
+      "3時にお会いしましょう。",
+      "私にタクシーを呼んでください。"
+    ]
+  },
+  {
+    id: 616,
+    important: true,
+    jp: "彼は本をテーブルに置いた。",
+    en: "He put the book on the table.",
+    blanks: [{ sentence: "He put the book (  ) the table.", choices: ["on", "at", "in", "by"], answer: "on" }],
+    sortWords: ["He", "put", "the", "book", "on", "the", "table", "."],
+    transChoices: [
+      "彼は本をテーブルに置いた。",
+      "部屋には誰もいなかった。",
+      "2008年に初めて彼に会った。",
+      "彼らは通りに沿って歩いた。"
+    ]
+  },
+  {
+    id: 617,
+    important: true,
+    jp: "3時にお会いしましょう。",
+    en: "I'll see you at three.",
+    blanks: [{ sentence: "I'll see you (  ) three.", choices: ["at", "in", "on", "by"], answer: "at" }],
+    sortWords: ["I'll", "see", "you", "at", "three", "."],
+    transChoices: [
+      "3時にお会いしましょう。",
+      "月曜日にお会いしましょう。",
+      "2008年に初めて彼に会った。",
+      "東京から京都までは約2時間かかります。"
+    ]
+  },
+  {
+    id: 618,
+    important: true,
+    jp: "2008年に初めて彼に会った。",
+    en: "I first met him in 2008.",
+    blanks: [{ sentence: "I first met him (  ) 2008.", choices: ["in", "at", "on", "by"], answer: "in" }],
+    sortWords: ["I", "first", "met", "him", "in", "2008", "."],
+    transChoices: [
+      "2008年に初めて彼に会った。",
+      "3時にお会いしましょう。",
+      "月曜日にお会いしましょう。",
+      "彼は昨日ロンドンへ発ちました。"
+    ]
+  },
+  {
+    id: 619,
+    important: true,
+    jp: "月曜日にお会いしましょう。",
+    en: "I'll see you on Monday.",
+    blanks: [{ sentence: "I'll see you (  ) Monday.", choices: ["on", "at", "in", "by"], answer: "on" }],
+    sortWords: ["I'll", "see", "you", "on", "Monday", "."],
+    transChoices: [
+      "月曜日にお会いしましょう。",
+      "3時にお会いしましょう。",
+      "私は午前8時30分から午後5時まで学校にいます。",
+      "私にタクシーを呼んでください。"
+    ]
+  },
+  {
+    id: 620,
+    important: true,
+    jp: "東京から京都までは約2時間かかります。",
+    en: "It takes about two hours from Tokyo to Kyoto.",
+    blanks: [{ sentence: "It takes about two hours (  ) Tokyo (  ) Kyoto.", choices: ["from", "at", "in", "by"], answer: "from" }, { sentence: "It takes about two hours from Tokyo (  ) Kyoto.", choices: ["to", "until", "till", "at"], answer: "to" }],
+    sortWords: ["It", "takes", "about", "two", "hours", "from", "Tokyo", "to", "Kyoto", "."],
+    transChoices: [
+      "東京から京都までは約2時間かかります。",
+      "私は午前8時30分から午後5時まで学校にいます。",
+      "私は昨夜2時間勉強した。",
+      "彼らは通りに沿って歩いた。"
+    ]
+  },
+  {
+    id: 621,
+    important: true,
+    jp: "私は午前8時30分から午後5時まで学校にいます。",
+    en: "I'm at school from 8:30 a.m. to 5:00 p.m.",
+    blanks: [{ sentence: "I'm at school from 8:30 a.m. (  ) 5:00 p.m.", choices: ["to", "until", "till", "by"], answer: "to" }],
+    sortWords: ["I'm", "at", "school", "from", "8:30 a.m.", "to", "5:00 p.m.", "."],
+    transChoices: [
+      "私は午前8時30分から午後5時まで学校にいます。",
+      "東京から京都までは約2時間かかります。",
+      "私は昨夜2時間勉強した。",
+      "私たちはバス停で待っていた。"
+    ]
+  },
+  {
+    id: 622,
+    important: true,
+    jp: "彼は昨日ロンドンへ発ちました。",
+    en: "He left for London yesterday.",
+    blanks: [{ sentence: "He left (  ) London yesterday.", choices: ["for", "to", "at", "in"], answer: "for" }],
+    sortWords: ["He", "left", "for", "London", "yesterday", "."],
+    transChoices: [
+      "彼は昨日ロンドンへ発ちました。",
+      "私にタクシーを呼んでください。",
+      "彼らは通りに沿って歩いた。",
+      "2008年に初めて彼に会った。"
+    ]
+  },
+  {
+    id: 623,
+    important: false,
+    jp: "私にタクシーを呼んでください。",
+    en: "Please call a taxi for me.",
+    blanks: [{ sentence: "Please call a taxi (  ) me.", choices: ["for", "to", "at", "with"], answer: "for" }],
+    sortWords: ["Please", "call", "a", "taxi", "for", "me", "."],
+    transChoices: [
+      "私にタクシーを呼んでください。",
+      "彼は昨日ロンドンへ発ちました。",
+      "私は昨夜2時間勉強した。",
+      "雨が降るといけないから傘を持って行きなさい。"
+    ]
+  },
+  {
+    id: 624,
+    important: false,
+    jp: "私は昨夜2時間勉強した。",
+    en: "I studied for two hours last night.",
+    blanks: [{ sentence: "I studied (  ) two hours last night.", choices: ["for", "during", "in", "at"], answer: "for" }],
+    sortWords: ["I", "studied", "for", "two", "hours", "last", "night", "."],
+    transChoices: [
+      "私は昨夜2時間勉強した。",
+      "東京から京都までは約2時間かかります。",
+      "私は午前8時30分から午後5時まで学校にいます。",
+      "彼らは通りに沿って歩いた。"
+    ]
+  },
+  {
+    id: 625,
+    important: true,
+    jp: "彼らは通りに沿って歩いた。",
+    en: "They walked along the street.",
+    blanks: [{ sentence: "They walked (  ) the street.", choices: ["along", "across", "through", "past"], answer: "along" }],
+    sortWords: ["They", "walked", "along", "the", "street", "."],
+    transChoices: [
+      "彼らは通りに沿って歩いた。",
+      "私にタクシーを呼んでください。",
+      "彼は昨日ロンドンへ発ちました。",
+      "私たちはバス停で待っていた。"
+    ]
+  },
+  {
+    id: 626,
+    important: false,
+    jp: "彼らは通りを歩いて横切った。",
+    en: "They walked across the street.",
+    blanks: [{ sentence: "They walked (  ) the street.", choices: ["across", "along", "through", "over"], answer: "across" }],
+    sortWords: ["They", "walked", "across", "the", "street", "."],
+    transChoices: [
+      "彼らは通りを歩いて横切った。",
+      "彼らは通りに沿って歩いた。",
+      "列車はトンネルを通った。",
+      "私たちは一晩中列車に乗っていた。"
+    ]
+  },
+  {
+    id: 627,
+    important: false,
+    jp: "列車はトンネルを通った。",
+    en: "The train went through the tunnel.",
+    blanks: [{ sentence: "The train went (  ) the tunnel.", choices: ["through", "across", "along", "past"], answer: "through" }],
+    sortWords: ["The", "train", "went", "through", "the", "tunnel", "."],
+    transChoices: [
+      "列車はトンネルを通った。",
+      "彼らは通りを歩いて横切った。",
+      "私たちは一晩中列車に乗っていた。",
+      "カエルが箱の中に跳んで入った。"
+    ]
+  },
+  {
+    id: 628,
+    important: false,
+    jp: "私たちは一晩中列車に乗っていた。",
+    en: "We traveled by train through the night.",
+    blanks: [{ sentence: "We traveled (  ) train through the night.", choices: ["by", "in", "on", "with"], answer: "by" }, { sentence: "We traveled by train (  ) the night.", choices: ["through", "across", "over", "during"], answer: "through" }],
+    sortWords: ["We", "traveled", "by", "train", "through", "the", "night", "."],
+    transChoices: [
+      "私たちは一晩中列車に乗っていた。",
+      "列車はトンネルを通った。",
+      "カエルが箱の中から跳んで出た。",
+      "濃い霧が海の上に立ちこめていた。"
+    ]
+  },
+  {
+    id: 629,
+    important: true,
+    jp: "カエルが箱の中に跳んで入った。",
+    en: "A frog jumped into the box.",
+    blanks: [{ sentence: "A frog jumped (  ) the box.", choices: ["into", "in", "to", "onto"], answer: "into" }],
+    sortWords: ["A", "frog", "jumped", "into", "the", "box", "."],
+    transChoices: [
+      "カエルが箱の中に跳んで入った。",
+      "カエルが箱の中から跳んで出た。",
+      "濃い霧が海の上に立ちこめていた。",
+      "少年はテーブルの下に隠れていた。"
+    ]
+  },
+  {
+    id: 630,
+    important: true,
+    jp: "カエルが箱の中から跳んで出た。",
+    en: "A frog jumped out of the box.",
+    blanks: [{ sentence: "A frog jumped (  ) of the box.", choices: ["out", "away", "off", "from"], answer: "out" }],
+    sortWords: ["A", "frog", "jumped", "out of", "the", "box", "."],
+    transChoices: [
+      "カエルが箱の中から跳んで出た。",
+      "カエルが箱の中に跳んで入った。",
+      "太陽が地平線の上に昇った。",
+      "この場所は海面よりも低い。"
+    ]
+  },
+  {
+    id: 631,
+    important: false,
+    jp: "濃い霧が海の上に立ちこめていた。",
+    en: "There was a thick fog over the sea.",
+    blanks: [{ sentence: "There was a thick fog (  ) the sea.", choices: ["over", "above", "on", "upon"], answer: "over" }],
+    sortWords: ["There", "was", "a", "thick", "fog", "over", "the", "sea", "."],
+    transChoices: [
+      "濃い霧が海の上に立ちこめていた。",
+      "少年はテーブルの下に隠れていた。",
+      "太陽が地平線の上に昇った。",
+      "私は階段を上った。"
+    ]
+  },
+  {
+    id: 632,
+    important: false,
+    jp: "少年はテーブルの下に隠れていた。",
+    en: "The boy was hiding under the table.",
+    blanks: [{ sentence: "The boy was hiding (  ) the table.", choices: ["under", "below", "beneath", "behind"], answer: "under" }],
+    sortWords: ["The", "boy", "was", "hiding", "under", "the", "table", "."],
+    transChoices: [
+      "少年はテーブルの下に隠れていた。",
+      "濃い霧が海の上に立ちこめていた。",
+      "彼女は駅の前で待っていた。",
+      "駅の裏に小さな公園がある。"
+    ]
+  },
+  {
+    id: 633,
+    important: false,
+    jp: "太陽が地平線の上に昇った。",
+    en: "The sun rose above the horizon.",
+    blanks: [{ sentence: "The sun rose (  ) the horizon.", choices: ["above", "over", "on", "up"], answer: "above" }],
+    sortWords: ["The", "sun", "rose", "above", "the", "horizon", "."],
+    transChoices: [
+      "太陽が地平線の上に昇った。",
+      "この場所は海面よりも低い。",
+      "私は階段を上った。",
+      "私は階段を下りた。"
+    ]
+  },
+  {
+    id: 634,
+    important: false,
+    jp: "この場所は海面よりも低い。",
+    en: "This place is below sea level.",
+    blanks: [{ sentence: "This place is (  ) sea level.", choices: ["below", "under", "beneath", "down"], answer: "below" }],
+    sortWords: ["This", "place", "is", "below", "sea", "level", "."],
+    transChoices: [
+      "この場所は海面よりも低い。",
+      "太陽が地平線の上に昇った。",
+      "彼は私の反対側に座っていた。",
+      "彼はベッドの横のいすに座った。"
+    ]
+  },
+  {
+    id: 635,
+    important: false,
+    jp: "私は階段を上った。",
+    en: "I went up the stairs.",
+    blanks: [{ sentence: "I went (  ) the stairs.", choices: ["up", "down", "over", "above"], answer: "up" }],
+    sortWords: ["I", "went", "up", "the", "stairs", "."],
+    transChoices: [
+      "私は階段を上った。",
+      "私は階段を下りた。",
+      "彼女は駅の前で待っていた。",
+      "駅の裏に小さな公園がある。"
+    ]
+  },
+  {
+    id: 636,
+    important: false,
+    jp: "私は階段を下りた。",
+    en: "I went down the stairs.",
+    blanks: [{ sentence: "I went (  ) the stairs.", choices: ["down", "up", "below", "under"], answer: "down" }],
+    sortWords: ["I", "went", "down", "the", "stairs", "."],
+    transChoices: [
+      "私は階段を下りた。",
+      "私は階段を上った。",
+      "彼女の家は私の家の隣です。",
+      "私は家の近くのスーパーに行った。"
+    ]
+  },
+  {
+    id: 637,
+    important: false,
+    jp: "彼女は駅の前で待っていた。",
+    en: "She was waiting in front of the station.",
+    blanks: [{ sentence: "She was waiting (  ) front of the station.", choices: ["in", "at", "on", "by"], answer: "in" }, { sentence: "She was waiting in front (  ) the station.", choices: ["of", "to", "at", "for"], answer: "of" }],
+    sortWords: ["She", "was", "waiting", "in front of", "the", "station", "."],
+    transChoices: [
+      "彼女は駅の前で待っていた。",
+      "駅の裏に小さな公園がある。",
+      "彼は私の反対側に座っていた。",
+      "彼はベッドの横のいすに座った。"
+    ]
+  },
+  {
+    id: 638,
+    important: false,
+    jp: "駅の裏に小さな公園がある。",
+    en: "There is a small park behind the station.",
+    blanks: [{ sentence: "There is a small park (  ) the station.", choices: ["behind", "before", "under", "below"], answer: "behind" }],
+    sortWords: ["There", "is", "a", "small", "park", "behind", "the", "station", "."],
+    transChoices: [
+      "駅の裏に小さな公園がある。",
+      "彼女は駅の前で待っていた。",
+      "私は家の近くのスーパーに行った。",
+      "こっちに来て私のそばに座りなさい。"
+    ]
+  },
+  {
+    id: 639,
+    important: false,
+    jp: "彼は私の反対側に座っていた。",
+    en: "He was sitting opposite me.",
+    blanks: [{ sentence: "He was sitting (  ) me.", choices: ["opposite", "against", "behind", "beside"], answer: "opposite" }],
+    sortWords: ["He", "was", "sitting", "opposite", "me", "."],
+    transChoices: [
+      "彼は私の反対側に座っていた。",
+      "彼女の家は私の家の隣です。",
+      "彼はベッドの横のいすに座った。",
+      "私は家の近くのスーパーに行った。"
+    ]
+  },
+  {
+    id: 640,
+    important: false,
+    jp: "彼女の家は私の家の隣です。",
+    en: "Her house is next to mine.",
+    blanks: [{ sentence: "Her house is next (  ) mine.", choices: ["to", "by", "beside", "near"], answer: "to" }],
+    sortWords: ["Her", "house", "is", "next to", "mine", "."],
+    transChoices: [
+      "彼女の家は私の家の隣です。",
+      "彼はベッドの横のいすに座った。",
+      "私は家の近くのスーパーに行った。",
+      "こっちに来て私のそばに座りなさい。"
+    ]
+  },
+  {
+    id: 641,
+    important: false,
+    jp: "彼はベッドの横のいすに座った。",
+    en: "He sat on the chair beside the bed.",
+    blanks: [{ sentence: "He sat on the chair (  ) the bed.", choices: ["beside", "besides", "next", "near"], answer: "beside" }],
+    sortWords: ["He", "sat", "on", "the", "chair", "beside", "the", "bed", "."],
+    transChoices: [
+      "彼はベッドの横のいすに座った。",
+      "彼女の家は私の家の隣です。",
+      "私は家の近くのスーパーに行った。",
+      "こっちに来て私のそばに座りなさい。"
+    ]
+  },
+  {
+    id: 642,
+    important: true,
+    jp: "私は家の近くのスーパーに行った。",
+    en: "I went to the supermarket near my house.",
+    blanks: [{ sentence: "I went to the supermarket (  ) my house.", choices: ["near", "by", "next", "beside"], answer: "near" }],
+    sortWords: ["I", "went", "to", "the", "supermarket", "near", "my", "house", "."],
+    transChoices: [
+      "私は家の近くのスーパーに行った。",
+      "こっちに来て私のそばに座りなさい。",
+      "9時までに家に帰らなければならない。",
+      "その小説はJ・K・ローリングによって書かれた。"
+    ]
+  },
+  {
+    id: 643,
+    important: true,
+    jp: "こっちに来て私のそばに座りなさい。",
+    en: "Come and sit by me.",
+    blanks: [{ sentence: "Come and sit (  ) me.", choices: ["by", "near", "beside", "at"], answer: "by" }],
+    sortWords: ["Come", "and", "sit", "by", "me", "."],
+    transChoices: [
+      "こっちに来て私のそばに座りなさい。",
+      "私は家の近くのスーパーに行った。",
+      "9時までに家に帰らなければならない。",
+      "私はその町のあちこちをさまよった。"
+    ]
+  },
+  {
+    id: 644,
+    important: true,
+    jp: "9時までに家に帰らなければならない。",
+    en: "I have to be home by nine.",
+    blanks: [{ sentence: "I have to be home (  ) nine.", choices: ["by", "until", "to", "at"], answer: "by" }],
+    sortWords: ["I", "have to", "be", "home", "by", "nine", "."],
+    transChoices: [
+      "9時までに家に帰らなければならない。",
+      "その店は夜10時まで開いている。",
+      "私はその町のあちこちをさまよった。",
+      "「彼についてよく知っている?」「うん。」"
+    ]
+  },
+  {
+    id: 645,
+    important: false,
+    jp: "その小説はJ・K・ローリングによって書かれた。",
+    en: "The novel was written by J.K. Rowling.",
+    blanks: [{ sentence: "The novel was written (  ) J.K. Rowling.", choices: ["by", "with", "from", "at"], answer: "by" }],
+    sortWords: ["The", "novel", "was", "written", "by", "J.K. Rowling", "."],
+    transChoices: [
+      "その小説はJ・K・ローリングによって書かれた。",
+      "私はその町のあちこちをさまよった。",
+      "地球は太陽の周りを回る。",
+      "木々の向こう側にお城が見えるかもしれません。"
+    ]
+  },
+  {
+    id: 646,
+    important: false,
+    jp: "私はその町のあちこちをさまよった。",
+    en: "I wandered about the town.",
+    blanks: [{ sentence: "I wandered (  ) the town.", choices: ["about", "around", "through", "across"], answer: "about" }],
+    sortWords: ["I", "wandered", "about", "the", "town", "."],
+    transChoices: [
+      "私はその町のあちこちをさまよった。",
+      "その小説はJ・K・ローリングによって書かれた。",
+      "「彼についてよく知っている?」「うん。」",
+      "地球は太陽の周りを回る。"
+    ]
+  },
+  {
+    id: 647,
+    important: false,
+    jp: "「彼についてよく知っている?」「うん。」「いや、あんまり。」",
+    en: "\"Do you know much about him?\" \"Yeah.\" \"Not really.\"",
+    blanks: [{ sentence: "Do you know much (  ) him?", choices: ["about", "of", "on", "for"], answer: "about" }],
+    sortWords: ["\"", "Do", "you", "know", "much", "about", "him", "?", "\"", "\"", "Yeah", ".", "\"", "\"", "Not", "really", ".", "\""],
+    transChoices: [
+      "「彼についてよく知っている?」「うん。」「いや、あんまり。」",
+      "地球は太陽の周りを回る。",
+      "木々の向こう側にお城が見えるかもしれません。",
+      "(2本の)木の間に小さな家がある。"
+    ]
+  },
+  {
+    id: 648,
+    important: true,
+    jp: "地球は太陽の周りを回る。",
+    en: "The earth goes around the sun.",
+    blanks: [{ sentence: "The earth goes (  ) the sun.", choices: ["around", "about", "through", "across"], answer: "around" }],
+    sortWords: ["The", "earth", "goes", "around", "the", "sun", "."],
+    transChoices: [
+      "地球は太陽の周りを回る。",
+      "木々の向こう側にお城が見えるかもしれません。",
+      "(2本の)木の間に小さな家がある。",
+      "(3本以上の)木々の間に小さな家がある。"
+    ]
+  },
+  {
+    id: 649,
+    important: false,
+    jp: "木々の向こう側にお城が見えるかもしれません。",
+    en: "A castle could be seen beyond the trees.",
+    blanks: [{ sentence: "A castle could be seen (  ) the trees.", choices: ["beyond", "behind", "over", "above"], answer: "beyond" }],
+    sortWords: ["A", "castle", "could", "be", "seen", "beyond", "the", "trees", "."],
+    transChoices: [
+      "木々の向こう側にお城が見えるかもしれません。",
+      "(2本の)木の間に小さな家がある。",
+      "(3本以上の)木々の間に小さな家がある。",
+      "私たちは夏休みの間に韓国を訪れた。"
+    ]
+  },
+  {
+    id: 650,
+    important: true,
+    jp: "(2本の)木の間に小さな家がある。",
+    en: "There is a small house between the trees.",
+    blanks: [{ sentence: "There is a small house (  ) the trees.", choices: ["between", "among", "in", "around"], answer: "between" }],
+    sortWords: ["There", "is", "a", "small", "house", "between", "the", "trees", "."],
+    transChoices: [
+      "(2本の)木の間に小さな家がある。",
+      "(3本以上の)木々の間に小さな家がある。",
+      "私たちは夏休みの間に韓国を訪れた。",
+      "私は夕食前に宿題を終えた。"
+    ]
+  },
+  {
+    id: 651,
+    important: true,
+    jp: "(3本以上の)木々の間に小さな家がある。",
+    en: "There is a small house among the trees.",
+    blanks: [{ sentence: "There is a small house (  ) the trees.", choices: ["among", "between", "in", "around"], answer: "among" }],
+    sortWords: ["There", "is", "a", "small", "house", "among", "the", "trees", "."],
+    transChoices: [
+      "(3本以上の)木々の間に小さな家がある。",
+      "(2本の)木の間に小さな家がある。",
+      "私たちは夏休みの間に韓国を訪れた。",
+      "私は夕食前に宿題を終えた。"
+    ]
+  },
+  {
+    id: 652,
+    important: false,
+    jp: "私たちは夏休みの間に韓国を訪れた。",
+    en: "We visited Korea during the summer vacation.",
+    blanks: [{ sentence: "We visited Korea (  ) the summer vacation.", choices: ["during", "for", "in", "while"], answer: "during" }],
+    sortWords: ["We", "visited", "Korea", "during", "the", "summer", "vacation", "."],
+    transChoices: [
+      "私たちは夏休みの間に韓国を訪れた。",
+      "私は夕食前に宿題を終えた。",
+      "私は夕食後に宿題をするつもりだ。",
+      "朝からずっと雨が降っている。"
+    ]
+  },
+  {
+    id: 653,
+    important: true,
+    jp: "私は夕食前に宿題を終えた。",
+    en: "I finished my homework before dinner.",
+    blanks: [{ sentence: "I finished my homework (  ) dinner.", choices: ["before", "after", "until", "by"], answer: "before" }],
+    sortWords: ["I", "finished", "my", "homework", "before", "dinner", "."],
+    transChoices: [
+      "私は夕食前に宿題を終えた。",
+      "私は夕食後に宿題をするつもりだ。",
+      "朝からずっと雨が降っている。",
+      "その店は夜10時まで開いている。"
+    ]
+  },
+  {
+    id: 654,
+    important: false,
+    jp: "私は夕食後に宿題をするつもりだ。",
+    en: "I'll do my homework after dinner.",
+    blanks: [{ sentence: "I'll do my homework (  ) dinner.", choices: ["after", "before", "until", "by"], answer: "after" }],
+    sortWords: ["I'll", "do", "my", "homework", "after", "dinner", "."],
+    transChoices: [
+      "私は夕食後に宿題をするつもりだ。",
+      "私は夕食前に宿題を終えた。",
+      "朝からずっと雨が降っている。",
+      "その店は夜10時まで開いている。"
+    ]
+  },
+  {
+    id: 655,
+    important: true,
+    jp: "朝からずっと雨が降っている。",
+    en: "It has been raining since this morning.",
+    blanks: [{ sentence: "It has been raining (  ) this morning.", choices: ["since", "from", "for", "during"], answer: "since" }],
+    sortWords: ["It", "has", "been", "raining", "since", "this", "morning", "."],
+    transChoices: [
+      "朝からずっと雨が降っている。",
+      "その店は夜10時まで開いている。",
+      "私はその考えには反対です。",
+      "彼は壁に自転車を寄りかかけた。"
+    ]
+  },
+  {
+    id: 656,
+    important: false,
+    jp: "その店は夜10時まで開いている。",
+    en: "The store is open until 10 p.m.",
+    blanks: [{ sentence: "The store is open (  ) 10 p.m.", choices: ["until", "by", "to", "for"], answer: "until" }],
+    sortWords: ["The", "store", "is", "open", "until", "10 p.m.", "."],
+    transChoices: [
+      "その店は夜10時まで開いている。",
+      "朝からずっと雨が降っている。",
+      "私はその考えには反対です。",
+      "先週末、友人とキャンプに行った。"
+    ]
+  },
+  {
+    id: 657,
+    important: false,
+    jp: "私はその考えには反対です。",
+    en: "I'm against the idea.",
+    blanks: [{ sentence: "I'm (  ) the idea.", choices: ["against", "for", "with", "to"], answer: "against" }],
+    sortWords: ["I'm", "against", "the", "idea", "."],
+    transChoices: [
+      "私はその考えには反対です。",
+      "彼は壁に自転車を寄りかかけた。",
+      "先週末、友人がキャンプに行った。",
+      "眼鏡がないと見えない。"
+    ]
+  },
+  {
+    id: 658,
+    important: false,
+    jp: "彼は壁に自転車を寄りかかけた。",
+    en: "He leaned his bike against the wall.",
+    blanks: [{ sentence: "He leaned his bike (  ) the wall.", choices: ["against", "on", "to", "by"], answer: "against" }],
+    sortWords: ["He", "leaned", "his", "bike", "against", "the", "wall", "."],
+    transChoices: [
+      "彼は壁に自転車を寄りかかけた。",
+      "私はその考えには反対です。",
+      "先週末、友人とキャンプに行った。",
+      "眼鏡がないと見えない。"
+    ]
+  },
+  {
+    id: 659,
+    important: false,
+    jp: "先週末、友人とキャンプに行った。",
+    en: "I went camping with my friends last weekend.",
+    blanks: [{ sentence: "I went camping (  ) my friends last weekend.", choices: ["with", "by", "and", "for"], answer: "with" }],
+    sortWords: ["I", "went", "camping", "with", "my", "friends", "last", "weekend", "."],
+    transChoices: [
+      "先週末、友人とキャンプに行った。",
+      "眼鏡がないと見えない。",
+      "私の学校は駅から歩ける距離にある。",
+      "山の頂上は雪で覆われている。"
+    ]
+  },
+  {
+    id: 660,
+    important: false,
+    jp: "眼鏡がないと見えない。",
+    en: "I can't see without my glasses.",
+    blanks: [{ sentence: "I can't see (  ) my glasses.", choices: ["without", "with", "except", "besides"], answer: "without" }],
+    sortWords: ["I", "can't", "see", "without", "my", "glasses", "."],
+    transChoices: [
+      "眼鏡がないと見えない。",
+      "私の学校は駅から歩ける距離にある。",
+      "山の頂上は雪で覆われている。",
+      "彼はサッカーチームの一員です。"
+    ]
+  },
+  {
+    id: 661,
+    important: false,
+    jp: "私の学校は駅から歩ける距離にある。",
+    en: "My school is within walking distance of the station.",
+    blanks: [{ sentence: "My school is (  ) walking distance of the station.", choices: ["within", "in", "near", "by"], answer: "within" }],
+    sortWords: ["My", "school", "is", "within", "walking", "distance", "of", "the", "station", "."],
+    transChoices: [
+      "私の学校は駅から歩ける距離にある。",
+      "ご満足いただけない場合は、30日以内は返却していただくことができます。",
+      "山の頂上は雪で覆われている。",
+      "彼はサッカーチームの一員です。"
+    ]
+  },
+  {
+    id: 662,
+    important: false,
+    jp: "ご満足いただけない場合は、30日以内は返却していただくことができます。",
+    en: "If you are not satisfied, you may return it within 30 days.",
+    blanks: [{ sentence: "If you are not satisfied, you may return it (  ) 30 days.", choices: ["within", "in", "by", "after"], answer: "within" }],
+    sortWords: ["If", "you", "are", "not", "satisfied", ",", "you", "may", "return", "it", "within", "30", "days", "."],
+    transChoices: [
+      "ご満足いただけない場合は、30日以内は返却していただくことができます。",
+      "私の学校は駅から歩ける距離にある。",
+      "山の頂上は雪で覆われている。",
+      "彼はサッカーチームの一員です。"
+    ]
+  },
+  {
+    id: 663,
+    important: true,
+    jp: "山の頂上は雪で覆われている。",
+    en: "The top of the mountain is covered with snow.",
+    blanks: [{ sentence: "The top of the mountain is covered (  ) snow.", choices: ["with", "by", "in", "of"], answer: "with" }],
+    sortWords: ["The", "top", "of", "the", "mountain", "is", "covered", "with", "snow", "."],
+    transChoices: [
+      "山の頂上は雪で覆われている。",
+      "彼はサッカーチームの一員です。",
+      "彼女はファッションモデルとして働いている。",
+      "彼女はときどき少年のように振る舞う。"
+    ]
+  },
+  {
+    id: 664,
+    important: false,
+    jp: "彼はサッカーチームの一員です。",
+    en: "He is a member of the soccer team.",
+    blanks: [{ sentence: "He is a member (  ) the soccer team.", choices: ["of", "in", "for", "to"], answer: "of" }],
+    sortWords: ["He", "is", "a", "member", "of", "the", "soccer", "team", "."],
+    transChoices: [
+      "彼はサッカーチームの一員です。",
+      "彼女はファッションモデルとして働いている。",
+      "彼女はときどき少年のように振る舞う。",
+      "私はハードロックを除いて、音楽は何でも好きです。"
+    ]
+  },
+  {
+    id: 665,
+    important: false,
+    jp: "彼女はファッションモデルとして働いている。",
+    en: "She is working as a fashion model.",
+    blanks: [{ sentence: "She is working (  ) a fashion model.", choices: ["as", "like", "for", "by"], answer: "as" }],
+    sortWords: ["She", "is", "working", "as", "a", "fashion", "model", "."],
+    transChoices: [
+      "彼女はファッションモデルとして働いている。",
+      "彼女はときどき少年のように振る舞う。",
+      "私はハードロックを除いて、音楽は何でも好きです。",
+      "私以外はみんな彼が来ることを知っていた。"
+    ]
+  },
+  {
+    id: 666,
+    important: false,
+    jp: "彼女はときどき少年のように振る舞う。",
+    en: "She sometimes acts like a boy.",
+    blanks: [{ sentence: "She sometimes acts (  ) a boy.", choices: ["like", "as", "such", "similar"], answer: "like" }],
+    sortWords: ["She", "sometimes", "acts", "like", "a", "boy", "."],
+    transChoices: [
+      "彼女はときどき少年のように振る舞う。",
+      "私はハードロックを除いて、音楽は何でも好きです。",
+      "私以外はみんな彼が来ることを知っていた。",
+      "雨のために試合は延期された。"
+    ]
+  },
+  {
+    id: 667,
+    important: false,
+    jp: "私はハードロックを除いて、音楽は何でも好きです。",
+    en: "I like all music except hard rock.",
+    blanks: [{ sentence: "I like all music (  ) hard rock.", choices: ["except", "beside", "without", "besides"], answer: "except" }],
+    sortWords: ["I", "like", "all", "music", "except", "hard", "rock", "."],
+    transChoices: [
+      "私はハードロックを除いて、音楽は何でも好きです。",
+      "私以外はみんな彼が来ることを知っていた。",
+      "雨のために試合は延期された。",
+      "雨にもかかわらず、彼らはビーチへ行った。"
+    ]
+  },
+  {
+    id: 668,
+    important: false,
+    jp: "私以外はみんな彼が来ることを知っていた。",
+    en: "Everyone but me knew that he was coming.",
+    blanks: [{ sentence: "Everyone (  ) me knew that he was coming.", choices: ["but", "except", "besides", "without"], answer: "but" }],
+    sortWords: ["Everyone", "but", "me", "knew", "that", "he", "was", "coming", "."],
+    transChoices: [
+      "私以外はみんな彼が来ることを知っていた。",
+      "雨のために試合は延期された。",
+      "雨にもかかわらず、彼らはビーチへ行った。",
+      "天気予報によると、明日は晴れるだろう。"
+    ]
+  },
+  {
+    id: 669,
+    important: true,
+    jp: "雨のために試合は延期された。",
+    en: "The game was postponed because of the rain.",
+    blanks: [{ sentence: "The game was postponed (  ) of the rain.", choices: ["because", "due", "owing", "thanks"], answer: "because" }, { sentence: "The game was postponed because (  ) the rain.", choices: ["of", "to", "for", "with"], answer: "of" }],
+    sortWords: ["The", "game", "was", "postponed", "because of", "the", "rain", "."],
+    transChoices: [
+      "雨のために試合は延期された。",
+      "雨にもかかわらず、彼らはビーチへ行った。",
+      "天気予報によると、明日は晴れるだろう。",
+      "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」"
+    ]
+  },
+  {
+    id: 670,
+    important: true,
+    jp: "雨にもかかわらず、彼らはビーチへ行った。",
+    en: "In spite of the rain, they went to the beach.",
+    blanks: [{ sentence: "(  ) spite of the rain, they went to the beach.", choices: ["In", "With", "By", "For"], answer: "In" }, { sentence: "In spite (  ) the rain, they went to the beach.", choices: ["of", "to", "for", "with"], answer: "of" }],
+    sortWords: ["In spite of", "the", "rain", ",", "they", "went", "to", "the", "beach", "."],
+    transChoices: [
+      "雨にもかかわらず、彼らはビーチへ行った。",
+      "天気予報によると、明日は晴れるだろう。",
+      "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」",
+      "「これは何ですか。」「コーヒーひき器です。」"
+    ]
+  },
+  {
+    id: 671,
+    important: true,
+    jp: "天気予報によると、明日は晴れるだろう。",
+    en: "According to the weather forecast, it will be fine tomorrow.",
+    blanks: [{ sentence: "(  ) to the weather forecast, it will be fine tomorrow.", choices: ["According", "Acceding", "Accepting", "Accounting"], answer: "According" }],
+    sortWords: ["According", "to", "the", "weather", "forecast", ",", "it", "will", "be", "fine", "tomorrow", "."],
+    transChoices: [
+      "天気予報によると、明日は晴れるだろう。",
+      "雨のために試合は延期された。",
+      "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」",
+      "「これは何ですか。」「コーヒーひき器です。」"
+    ]
+  },
+  {
+    id: 672,
+    important: false,
+    jp: "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」",
+    en: "Who is that girl in red? (She is) my sister.",
+    blanks: [{ sentence: "(  ) is that girl in red?", choices: ["Who", "What", "Which", "Whose"], answer: "Who" }],
+    sortWords: ["Who", "is", "that", "girl", "in", "red", "?", "\"", "She", "is", "my", "sister", ".", "\""],
+    transChoices: [
+      "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」",
+      "「これは何ですか。」「コーヒーひき器です。」",
+      "「あなたの好きな季節はどれですか。」「夏です。」",
+      "「昨日試合に勝ったのは誰ですか。」「マイクです。」"
+    ]
+  },
+  {
+    id: 673,
+    important: false,
+    jp: "「これは何ですか。」「コーヒーひき器です。」",
+    en: "What's this? (It's) a coffee grinder.",
+    blanks: [{ sentence: "(  ) this?", choices: ["What's", "Who's", "Where's", "When's"], answer: "What's" }],
+    sortWords: ["What's", "this", "?", "\"", "It's", "a", "coffee", "grinder", ".", "\""],
+    transChoices: [
+      "「これは何ですか。」「コーヒーひき器です。」",
+      "「赤い服を着たあの女の子は誰ですか。」「私の妹です。」",
+      "「あなたの好きな季節はどれですか。」「夏です。」",
+      "「昨日試合に勝ったのは誰ですか。」「マイクです。」"
+    ]
+  },
+  {
+    id: 674,
+    important: false,
+    jp: "「あなたの好きな季節はどれですか。」「夏です。」",
+    en: "Which is your favorite season? (It's) summer.",
+    blanks: [{ sentence: "(  ) is your favorite season?", choices: ["Which", "What", "Who", "Whose"], answer: "Which" }],
+    sortWords: ["Which", "is", "your", "favorite", "season", "?", "\"", "It's", "summer", ".", "\""],
+    transChoices: [
+      "「あなたの好きな季節はどれですか。」「夏です。」",
+      "「昨日試合に勝ったのは誰ですか。」「マイクです。」",
+      "「彼女は誰と結婚しましたか。」「彼女はジョンと結婚しました。」",
+      "「何が欲しいですか。」「新しい時計が欲しいです。」"
+    ]
+  },
+  {
+    id: 675,
+    important: false,
+    jp: "「昨日試合に勝ったのは誰ですか。」「マイクです。」",
+    en: "Who won the game yesterday? Mike (did).",
+    blanks: [{ sentence: "(  ) won the game yesterday?", choices: ["Who", "What", "Which", "Whom"], answer: "Who" }],
+    sortWords: ["Who", "won", "the", "game", "yesterday", "?", "Mike", "."],
+    transChoices: [
+      "「昨日試合に勝ったのは誰ですか。」「マイクです。」",
+      "「あなたの好きな季節はどれですか。」「夏です。」",
+      "「彼女は誰と結婚しましたか。」「彼女はジョンと結婚しました。」",
+      "「何が欲しいですか。」「新しい時計が欲しいです。」"
+    ]
+  },
+  {
+    id: 676,
+    important: false,
+    jp: "「彼女は誰と結婚しましたか。」「彼女はジョンと結婚しました。」",
+    en: "Who did she marry? She married John.",
+    blanks: [{ sentence: "(  ) did she marry?", choices: ["Who", "What", "Which", "Whose"], answer: "Who" }],
+    sortWords: ["Who", "did", "she", "marry", "?", "She", "married", "John", "."],
+    transChoices: [
+      "「彼女は誰と結婚しましたか。」「彼女はジョンと結婚しました。」",
+      "「昨日試合に勝ったのは誰ですか。」「マイクです。」",
+      "「何が欲しいですか。」「新しい時計が欲しいです。」",
+      "「どちらのほうが好きですか。」「青いほうです。」"
+    ]
+  },
+  {
+    id: 677,
+    important: false,
+    jp: "「何が欲しいですか。」「新しい時計が欲しいです。」",
+    en: "What do you want? I want a new watch.",
+    blanks: [{ sentence: "(  ) do you want?", choices: ["What", "Who", "Which", "Where"], answer: "What" }],
+    sortWords: ["What", "do", "you", "want", "?", "I", "want", "a", "new", "watch", "."],
+    transChoices: [
+      "「何が欲しいですか。」「新しい時計が欲しいです。」",
+      "「彼女は誰と結婚しましたか。」「彼女はジョンと結婚しました。」",
+      "「どちらのほうが好きですか。」「青いほうです。」",
+      "「今週末、京都へ行く予定です。」「誰と行くのですか。」"
+    ]
+  },
+  {
+    id: 678,
+    important: false,
+    jp: "「どちらのほうが好きですか。」「青いほうです。」",
+    en: "Which do you like better? The blue one.",
+    blanks: [{ sentence: "(  ) do you like better?", choices: ["Which", "What", "Who", "Whose"], answer: "Which" }],
+    sortWords: ["Which", "do", "you", "like", "better", "?", "The", "blue", "one", "."],
+    transChoices: [
+      "「どちらのほうが好きですか。」「青いほうです。」",
+      "「何が欲しいですか。」「新しい時計が欲しいです。」",
+      "「今週末、京都へ行く予定です。」「誰と行くのですか。」",
+      "「このコートは誰のものですか。」「私のものです。」"
+    ]
+  },
+  {
+    id: 679,
+    important: false,
+    jp: "「今週末、京都へ行く予定です。」「誰と行くのですか。」",
+    en: "I'm going to Kyoto this weekend. Who are you going with?",
+    blanks: [{ sentence: "I'm going to Kyoto this weekend. Who are you going (  )?", choices: ["with", "for", "to", "by"], answer: "with" }],
+    sortWords: ["I'm", "going", "to", "Kyoto", "this", "weekend", ".", "Who", "are", "you", "going", "with", "?"],
+    transChoices: [
+      "「今週末、京都へ行く予定です。」「誰と行くのですか。」",
+      "「どちらのほうが好きですか。」「青いほうです。」",
+      "「このコートは誰のものですか。」「私のものです。」",
+      "「これは誰のコートですか。」「私のものです。」"
+    ]
+  },
+  {
+    id: 680,
+    important: false,
+    jp: "「このコートは誰のものですか。」「私のものです。」",
+    en: "Whose is this coat? It's mine.",
+    blanks: [{ sentence: "(  ) is this coat?", choices: ["Whose", "Who", "What", "Which"], answer: "Whose" }],
+    sortWords: ["Whose", "is", "this", "coat", "?", "It's", "mine", "."],
+    transChoices: [
+      "「このコートは誰のものですか。」「私のものです。」",
+      "「今週末、京都へ行く予定です。」「誰と行くのですか。」",
+      "「これは誰のコートですか。」「私のものです。」",
+      "「どのサイズなさいますか。」「Sをお願いします。」"
+    ]
+  },
+  {
+    id: 681,
+    important: true,
+    jp: "「これは誰のコートですか。」「私のものです。」",
+    en: "Whose coat is this? It's mine.",
+    blanks: [{ sentence: "(  ) coat is this?", choices: ["Whose", "Who", "What", "Which"], answer: "Whose" }],
+    sortWords: ["Whose", "coat", "is", "this", "?", "It's", "mine", "."],
+    transChoices: [
+      "「これは誰のコートですか。」「私のものです。」",
+      "「このコートは誰のものですか。」「私のものです。」",
+      "「どのサイズなさいますか。」「Sをお願いします。」",
+      "「どのバスが博物館に行きますか。」「6番です。」"
+    ]
+  },
+  {
+    id: 682,
+    important: false,
+    jp: "「どのサイズになさいますか。」「Sをお願いします。」",
+    en: "What size would you like? Small, please.",
+    blanks: [{ sentence: "(  ) size would you like?", choices: ["What", "Which", "Whose", "How"], answer: "What" }],
+    sortWords: ["What", "size", "would", "you", "like", "?", "Small", ",", "please", "."],
+    transChoices: [
+      "「どのサイズになさいますか。」「Sをお願いします。」",
+      "「これは誰のコートですか。」「私のものです。」",
+      "「どのバスが博物館に行きますか。」「6番です。」",
+      "「いつ来ましたか。」「5時ごろです。」"
+    ]
+  },
+  {
+    id: 683,
+    important: false,
+    jp: "「どのバスが博物館に行きますか。」「6番です。」",
+    en: "Which bus goes to the museum? Line 6.",
+    blanks: [{ sentence: "(  ) bus goes to the museum?", choices: ["Which", "What", "Who", "Whose"], answer: "Which" }],
+    sortWords: ["Which", "bus", "goes", "to", "the", "museum", "?", "Line", "6", "."],
+    transChoices: [
+      "「どのバスが博物館に行きますか。」「6番です。」",
+      "「どのサイズになさいますか。」「Sをお願いします。」",
+      "「いつ来ましたか。」「5時ごろです。」",
+      "「彼は今どこにいますか。」「図書館にいます。」"
+    ]
+  },
+  {
+    id: 684,
+    important: false,
+    jp: "「いつ来ましたか。」「5時ごろです。」",
+    en: "When did you come? Around five.",
+    blanks: [{ sentence: "(  ) did you come?", choices: ["When", "Where", "Why", "How"], answer: "When" }],
+    sortWords: ["When", "did", "you", "come", "?", "Around", "five", "."],
+    transChoices: [
+      "「いつ来ましたか。」「5時ごろです。」",
+      "「どのバスが博物館に行きますか。」「6番です。」",
+      "「彼は今どこにいますか。」「図書館にいます。」",
+      "「先週はなぜ欠席だったのですか。」「高熱が出たからです。」"
+    ]
+  },
+  {
+    id: 685,
+    important: false,
+    jp: "「彼は今どこにいますか。」「図書館にいます。」",
+    en: "Where is he now? In the library.",
+    blanks: [{ sentence: "(  ) is he now?", choices: ["Where", "When", "Why", "How"], answer: "Where" }],
+    sortWords: ["Where", "is", "he", "now", "?", "In", "the", "library", "."],
+    transChoices: [
+      "「彼は今どこにいますか。」「図書館にいます。」",
+      "「いつ来ましたか。」「5時ごろです。」",
+      "「先週はなぜ欠席だったのですか。」「高熱が出たからです。」",
+      "「どうしてここに来ましたか。」「バスで来ました。」"
+    ]
+  },
+  {
+    id: 686,
+    important: false,
+    jp: "「先週はなぜ欠席だったのですか。」「高熱が出たからです。」",
+    en: "Why were you absent last week? Because I had a high fever.",
+    blanks: [{ sentence: "(  ) were you absent last week?", choices: ["Why", "When", "Where", "How"], answer: "Why" }],
+    sortWords: ["Why", "were", "you", "absent", "last", "week", "?", "Because", "I", "had", "a", "high", "fever", "."],
+    transChoices: [
+      "「先週はなぜ欠席だったのですか。」「高熱が出たからです。」",
+      "「彼は今どこにいますか。」「図書館にいます。」",
+      "「どうしてここに来ましたか。」「バスで来ました。」",
+      "「お加減はいかがですか。」「もうよくなりました。」"
+    ]
+  },
+  {
+    id: 687,
+    important: false,
+    jp: "「どうしてここに来ましたか。」「バスで来ました。」",
+    en: "How did you come here? By bus.",
+    blanks: [{ sentence: "(  ) did you come here?", choices: ["How", "Why", "When", "Where"], answer: "How" }],
+    sortWords: ["How", "did", "you", "come", "here", "?", "By", "bus", "."],
+    transChoices: [
+      "「どうしてここに来ましたか。」「バスで来ました。」",
+      "「先週はなぜ欠席だったのですか。」「高熱が出たからです。」",
+      "「お加減はいかがですか。」「もうよくなりました。」",
+      "「あなたのお姉さんは何歳ですか。」「23歳です。」"
+    ]
+  },
+  {
+    id: 688,
+    important: false,
+    jp: "「お加減はいかがですか。」「もうよくなりました。」",
+    en: "How do you feel? I feel better now.",
+    blanks: [{ sentence: "(  ) do you feel?", choices: ["How", "What", "Why", "Where"], answer: "How" }],
+    sortWords: ["How", "do", "you", "feel", "?", "I", "feel", "better", "now", "."],
+    transChoices: [
+      "「お加減はいかがですか。」「もうよくなりました。」",
+      "「どうしてここに来ましたか。」「バスで来ました。」",
+      "「あなたのお姉さんは何歳ですか。」「23歳です。」",
+      "「何人パーティーに来ましたか。」「6人です。」"
+    ]
+  },
+  {
+    id: 689,
+    important: true,
+    jp: "「あなたのお姉さんは何歳ですか。」「23歳です。」",
+    en: "How old is your sister? She is 23.",
+    blanks: [{ sentence: "(  ) old is your sister?", choices: ["How", "What", "Which", "Who"], answer: "How" }],
+    sortWords: ["How", "old", "is", "your", "sister", "?", "She", "is", "23", "."],
+    transChoices: [
+      "「あなたのお姉さんは何歳ですか。」「23歳です。」",
+      "「お加減はいかがですか。」「もうよくなりました。」",
+      "「何人パーティーに来ましたか。」「6人です。」",
+      "「いくらお金が必要ですか。」「約50ドルです。」"
+    ]
+  },
+  {
+    id: 690,
+    important: false,
+    jp: "「何人パーティーに来ましたか。」「6人です。」",
+    en: "How many people came to the party? Six people (did).",
+    blanks: [{ sentence: "(  ) many people came to the party?", choices: ["How", "What", "Which", "Whose"], answer: "How" }],
+    sortWords: ["How", "many", "people", "came", "to", "the", "party", "?", "Six", "people", "."],
+    transChoices: [
+      "「何人パーティーに来ましたか。」「6人です。」",
+      "「あなたのお姉さんは何歳ですか。」「23歳です。」",
+      "「いくらお金が必要ですか。」「約50ドルです。」",
+      "私は彼がどこに住んでいるか知っている。"
+    ]
+  },
+  {
+    id: 691,
+    important: false,
+    jp: "「いくらお金が必要ですか。」「約50ドルです。」",
+    en: "How much money do you need? About 50 dollars.",
+    blanks: [{ sentence: "(  ) much money do you need?", choices: ["How", "What", "Which", "Whose"], answer: "How" }],
+    sortWords: ["How", "much", "money", "do", "you", "need", "?", "About", "50", "dollars", "."],
+    transChoices: [
+      "「いくらお金が必要ですか。」「約50ドルです。」",
+      "「何人パーティーに来ましたか。」「6人です。」",
+      "私は彼がどこに住んでいるか知っている。",
+      "誰が窓を割ったのか、彼に尋ねてみます。"
+    ]
+  },
+  {
+    id: 692,
+    important: true,
+    jp: "私は彼がどこに住んでいるか知っている。",
+    en: "I know where he lives.",
+    blanks: [{ sentence: "I know (  ) he lives.", choices: ["where", "what", "who", "when"], answer: "where" }],
+    sortWords: ["I", "know", "where", "he", "lives", "."],
+    transChoices: [
+      "私は彼がどこに住んでいるか知っている。",
+      "「いくらお金が必要ですか。」「約50ドルです。」",
+      "誰が窓を割ったのか、彼に尋ねてみます。",
+      "「彼女は何歳だと思いますか。」「20代だと思います。」"
+    ]
+  },
+  {
+    id: 693,
+    important: false,
+    jp: "誰が窓を割ったのか、彼に尋ねてみます。",
+    en: "I'll ask him who broke the window.",
+    blanks: [{ sentence: "I'll ask him (  ) broke the window.", choices: ["who", "what", "which", "whose"], answer: "who" }],
+    sortWords: ["I'll", "ask", "him", "who", "broke", "the", "window", "."],
+    transChoices: [
+      "誰が窓を割ったのか、彼に尋ねてみます。",
+      "私は彼がどこに住んでいるか知っている。",
+      "「彼女は何歳だと思いますか。」「20代だと思います。」",
+      "「何のために大学へ行っているのですか。」「法律を勉強するためです。」"
+    ]
+  },
+  {
+    id: 694,
+    important: true,
+    jp: "「彼女は何歳だと思いますか。」「20代だと思います。」",
+    en: "How old do you think she is? I think she's in her twenties.",
+    blanks: [{ sentence: "(  ) old do you think she is?", choices: ["How", "What", "Which", "Who"], answer: "How" }],
+    sortWords: ["How", "old", "do", "you", "think", "she", "is", "?", "I", "think", "she's", "in", "her", "twenties", "."],
+    transChoices: [
+      "「彼女は何歳だと思いますか。」「20代だと思います。」",
+      "誰が窓を割ったのか、彼に尋ねてみます。",
+      "「何のために大学へ行っているのですか。」「法律を勉強するためです。」",
+      "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」"
+    ]
+  },
+  {
+    id: 695,
+    important: true,
+    jp: "「何のために大学へ行っているのですか。」「法律を勉強するためです。」",
+    en: "What do you go to college for? To study law.",
+    blanks: [{ sentence: "What do you go to college (  )?", choices: ["for", "to", "at", "in"], answer: "for" }],
+    sortWords: ["What", "do", "you", "go", "to", "college", "for", "?", "To", "study", "law", "."],
+    transChoices: [
+      "「何のために大学へ行っているのですか。」「法律を勉強するためです。」",
+      "「彼女は何歳だと思いますか。」「20代だと思います。」",
+      "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」",
+      "「リチャードってどんな人ですか。」「とても親切です。」"
+    ]
+  },
+  {
+    id: 696,
+    important: false,
+    jp: "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」",
+    en: "How come the library is closed? Today is a national holiday.",
+    blanks: [{ sentence: "(  ) come the library is closed?", choices: ["How", "Why", "What", "Where"], answer: "How" }],
+    sortWords: ["How", "come", "the", "library", "is", "closed", "?", "Today", "is", "a", "national", "holiday", "."],
+    transChoices: [
+      "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」",
+      "「何のために大学へ行っているのですか。」「法律を勉強するためです。」",
+      "「リチャードってどんな人ですか。」「とても親切です。」",
+      "「ボストンはどうですか。」「とても気に入っています。」"
+    ]
+  },
+  {
+    id: 697,
+    important: true,
+    jp: "「リチャードってどんな人ですか。」「とても親切です。」",
+    en: "What's Richard like? He is very nice.",
+    blanks: [{ sentence: "(  ) Richard like?", choices: ["What's", "How's", "Who's", "Which's"], answer: "What's" }],
+    sortWords: ["What's", "Richard", "like", "?", "He", "is", "very", "nice", "."],
+    transChoices: [
+      "「リチャードってどんな人ですか。」「とても親切です。」",
+      "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」",
+      "「ボストンはどうですか。」「とても気に入っています。」",
+      "その本はとてもおもしろかったので、1日で読んだ。"
+    ]
+  },
+  {
+    id: 698,
+    important: true,
+    jp: "「ボストンはどうですか。」「とても気に入っています。」",
+    en: "How do you like Boston? I like it very much.",
+    blanks: [{ sentence: "(  ) do you like Boston?", choices: ["How", "What", "Which", "Where"], answer: "How" }],
+    sortWords: ["How", "do", "you", "like", "Boston", "?", "I", "like", "it", "very", "much", "."],
+    transChoices: [
+      "「ボストンはどうですか。」「とても気に入っています。」",
+      "「リチャードってどんな人ですか。」「とても親切です。」",
+      "「どうして図書館は閉まっているのだろう。」「今日は祝日ですよ。」",
+      "それはとてもおもしろい本だったので、1日で読んだ。"
+    ]
+  }
+];
