@@ -1,1 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英語例文クイズアプリ (609〜698)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between pb-24">
+
+  <!-- ヘッダー -->
+  <header class="bg-indigo-600 text-white p-4 shadow-md sticky top-0 z-20 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <span class="text-2xl">📚</span>
+      <h1 class="text-lg font-bold">英語例文クイズ (609〜698)</h1>
+    </div>
+    <!-- 音声ON/OFF切り替えボタン -->
+    <button id="global-audio-btn" onclick="toggleGlobalAudio()" class="bg-indigo-700 hover:bg-indigo-800 text-white text-sm px-3 py-1.5 rounded-full flex items-center space-x-1 transition shadow">
+      <span id="audio-icon">🔊</span>
+      <span id="audio-text">音声: ON</span>
+    </button>
+  </header>
+
+  <!-- メインコンテンツコンテナ -->
+  <main class="max-w-xl w-full mx-auto p-4 flex-grow flex flex-col justify-center">
+    
+    <!-- 設定画面 -->
+    <div id="screen-setup" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+      <h2 class="text-xl font-bold text-slate-900 border-b pb-3">学習設定</h2>
+      
+      <!-- ユーザー認証・クラウド同期セクション -->
+      <div id="auth-section" class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-bold text-indigo-900">☁️ クラウド同期 (Firebase)</span>
+          <span id="auth-status-badge" class="text-xs px-2 py-0.5 bg-slate-200 text-slate-700 rounded-full font-semibold">未ログイン</span>
+        </div>
+        
+        <!-- 未ログイン時 -->
+        <div id="auth-logged-out" class="space-y-2">
+          <input type="email" id="auth-email" placeholder="メールアドレス" class="w-full p-2 text-sm border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          <input type="password" id="auth-password" placeholder="パスワード (6文字以上)" class="w-full p-2 text-sm border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          <div class="flex gap-2 pt-1">
+            <button onclick="window.appLogin()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition shadow-sm">ログイン</button>
+            <button onclick="window.appSignup()" class="flex-1 bg-white hover:bg-indigo-50 text-indigo-600 border border-indigo-300 text-xs font-bold py-2 px-3 rounded-lg transition shadow-sm">新規登録</button>
+          </div>
+        </div>
+
+        <!-- ログイン時 -->
+        <div id="auth-logged-in" class="hidden space-y-2">
+          <p id="auth-user-email" class="text-xs text-slate-600 font-medium truncate"></p>
+          <button onclick="window.appLogout()" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold py-2 rounded-lg transition">ログアウト</button>
+        </div>
+        <div id="auth-message" class="text-xs font-semibold hidden"></div>
+      </div>
+
+      <!-- モード選択 -->
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-2">出題形式</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="setMode('fill')" class="mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-indigo-600 bg-indigo-50 text-indigo-700" data-mode="fill">① 日→英 穴埋め(四択)</button>
+          <button onclick="setMode('sort')" class="mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-slate-200 bg-white text-slate-700 hover:bg-slate-50" data-mode="sort">② 日→英 並べ替え</button>
+          <button onclick="setMode('type')" class="mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-slate-200 bg-white text-slate-700 hover:bg-slate-50" data-mode="type">③ 日→英 タイピング</button>
+          <button onclick="setMode('trans')" class="mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-slate-200 bg-white text-slate-700 hover:bg-slate-50" data-mode="trans">④ 英→日 和訳(四択)</button>
+        </div>
+      </div>
+
+      <!-- 出題範囲指定 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-semibold text-slate-700">出題範囲 (例文番号)</label>
+        <div class="flex items-center space-x-2">
+          <input type="number" id="range-start" value="609" min="609" max="698" class="w-full p-2.5 border rounded-lg text-center font-bold">
+          <span class="text-slate-400">〜</span>
+          <input type="number" id="range-end" value="698" min="609" max="698" class="w-full p-2.5 border rounded-lg text-center font-bold">
+        </div>
+      </div>
+
+      <!-- 出題順序選択 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-semibold text-slate-700">出題順序</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="setOrder('sequential')" id="order-seq-btn" class="p-2.5 rounded-xl border text-sm font-medium border-indigo-600 bg-indigo-50 text-indigo-700">順番通り</button>
+          <button onclick="setOrder('shuffle')" id="order-shuffle-btn" class="p-2.5 rounded-xl border text-sm font-medium border-slate-200 bg-white text-slate-700">シャッフル</button>
+        </div>
+      </div>
+
+      <!-- モード別詳細オプション -->
+      <div class="space-y-3 pt-2 border-t">
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="checkbox" id="important-only" class="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500">
+          <span class="text-sm font-medium text-slate-700">★印（重要例文）のみを出題する</span>
+        </label>
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="checkbox" id="weakness-mode" class="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500">
+          <span class="text-sm font-medium text-slate-700">🧠 苦手克服モード（累積正答率の低い問題を優先）</span>
+        </label>
+      </div>
+
+      <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow transition transform active:scale-95">
+        クイズを始める 🚀
+      </button>
+    </div>
+
+    <!-- クイズ演習画面 -->
+    <div id="screen-quiz" class="hidden space-y-4">
+      <!-- 進捗・情報バー -->
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-2">
+        <div class="flex justify-between items-center text-sm font-medium text-slate-600">
+          <span id="quiz-progress-text">第1問 / 90問</span>
+          <span id="quiz-mode-badge" class="px-2.5 py-0.5 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold">穴埋め</span>
+        </div>
+        <!-- 細い進捗バー -->
+        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+          <div id="progress-bar-fill" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <!-- 問題カード -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+        <div class="text-xs font-bold text-indigo-600 tracking-wider uppercase" id="quiz-id-label">No. 609</div>
+        <div id="quiz-question-area" class="text-lg font-bold text-slate-900 leading-relaxed"></div>
+        <div id="quiz-sub-area" class="pt-2"></div>
+      </div>
+
+      <!-- 解答フィードバック・解説エリア (回答後に整理して表示) -->
+      <div id="quiz-feedback-area" class="hidden bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4 animate-fade-in">
+        <div id="feedback-header" class="text-lg font-black flex items-center space-x-2"></div>
+        <div class="p-3 bg-slate-50 rounded-xl space-y-2 border border-slate-200">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">正解の英文 & 和訳</p>
+          <div id="feedback-en" class="font-bold text-slate-900 text-lg"></div>
+          <div id="feedback-jp" class="text-slate-600 text-sm"></div>
+        </div>
+        <!-- 個別音声ボタン -->
+        <button onclick="playCurrentAudio()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm flex items-center justify-center space-x-2 transition">
+          <span>🔊</span><span>発音を聴く</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="screen-result" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center space-y-3">
+        <h2 class="text-2xl font-black text-slate-900">🎉 クイズ終了！</h2>
+        <div class="text-4xl font-extrabold text-indigo-600" id="result-score-text">0問正解 / 0問出題</div>
+        <p class="text-sm text-slate-500" id="result-rate-text">正答率: 0%</p>
+        <div class="pt-4 flex gap-2">
+          <button onclick="retryWrongQuestions()" id="retry-wrong-btn" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-xl shadow transition hidden">
+            間違えた問題だけ再挑戦
+          </button>
+          <button onclick="returnToSetup()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow transition">
+            設定に戻る
+          </button>
+        </div>
+      </div>
+
+      <!-- 詳細結果一覧表 -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+        <h3 class="font-bold text-slate-800 border-b pb-2">出題された問題と正誤一覧</h3>
+        <div id="result-table-container" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 固定フッターナビゲーション (問題演習中のみ表示) -->
+  <footer id="quiz-footer-nav" class="hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur border-t p-3 z-30 shadow-lg">
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-2">
+      <button onclick="goToPrevQuestion()" id="footer-prev-btn" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition flex items-center space-x-1">
+        <span>←</span><span>前へ</span>
+      </button>
+      <button onclick="retryCurrentQuestion()" class="px-3 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition" title="この問題をもう一度解く">
+        🔄
+      </button>
+      <!-- 「次へ」ボタン (回答後に出現、スクロール不要の位置に固定) -->
+      <button onclick="goToNextQuestion()" id="footer-next-btn" class="hidden flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl text-sm shadow transition flex items-center justify-center space-x-2">
+        <span>次の問題へ</span><span>→</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- スクリプト読み込み順序保証 -->
+  <script src="quiz-data.js"></script>
+  
+  <!-- Firebase SDKs (ES Modules CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCPf7TMOojKgzGVikGpSzzq6GqfUVPSxYU",
+      authDomain: "reibun-32528.firebaseapp.com",
+      projectId: "reibun-32528",
+      storageBucket: "reibun-32528.firebasestorage.app",
+      messagingSenderId: "570500911445",
+      appId: "1:570500911445:web:3512bdf965c106e19a9fdc",
+      measurementId: "G-25DTLZ13LM"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Analytics (optional support check)
+      isSupported().then(supported => {
+        if (supported) {
+          getAnalytics(app);
+        }
+      }).catch(e => console.log("Analytics not supported", e));
+
+      window.currentAuthUser = null;
+      window.db = db;
+      window.doc = doc;
+      window.setDoc = setDoc;
+
+      // 認証状態の監視
+      onAuthStateChanged(auth, async (user) => {
+        const outDiv = document.getElementById('auth-logged-out');
+        const inDiv = document.getElementById('auth-logged-in');
+        const emailP = document.getElementById('auth-user-email');
+        const badge = document.getElementById('auth-status-badge');
+
+        if (user) {
+          window.currentAuthUser = user;
+          outDiv.classList.add('hidden');
+          inDiv.classList.remove('hidden');
+          emailP.innerText = user.email;
+          badge.innerText = "同期中 (ログイン済)";
+          badge.className = "text-xs px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-semibold";
+
+          // クラウド履歴とローカル履歴の統合（スマートマージ）
+          try {
+            const userDocRef = doc(db, "users", user.uid);
+            const userSnap = await getDoc(userDocRef);
+            let localHistory = JSON.parse(localStorage.getItem('quiz_history') || '{}');
+            
+            if (userSnap.exists()) {
+              const cloudData = userSnap.data();
+              const cloudHistory = cloudData.history || {};
+              let mergedHistory = { ...cloudHistory };
+              for (let id in localHistory) {
+                if (!mergedHistory[id]) {
+                  mergedHistory[id] = localHistory[id];
+                } else {
+                  mergedHistory[id] = {
+                    total: Math.max(localHistory[id].total, cloudHistory[id].total),
+                    correct: Math.max(localHistory[id].correct, cloudHistory[id].correct)
+                  };
+                }
+              }
+              localStorage.setItem('quiz_history', JSON.stringify(mergedHistory));
+              await setDoc(userDocRef, { history: mergedHistory, lastUpdated: new Date().toISOString() }, { merge: true });
+            } else {
+              if (Object.keys(localHistory).length > 0) {
+                await setDoc(userDocRef, { history: localHistory, lastUpdated: new Date().toISOString() });
+              }
+            }
+          } catch (err) {
+            console.error("Failed to sync history on login:", err);
+            showAuthMessage("クラウド履歴の同期に失敗しました。", true);
+          }
+        } else {
+          window.currentAuthUser = null;
+          outDiv.classList.remove('hidden');
+          inDiv.classList.add('hidden');
+          emailP.innerText = "";
+          badge.innerText = "未ログイン";
+          badge.className = "text-xs px-2 py-0.5 bg-slate-200 text-slate-700 rounded-full font-semibold";
+          // ログアウト時は前ユーザーのローカル履歴をクリア
+          localStorage.removeItem('quiz_history');
+        }
+      });
+
+      // ログイン
+      window.appLogin = async () => {
+        const email = document.getElementById('auth-email').value.trim();
+        const password = document.getElementById('auth-password').value;
+        if (!email || !password) {
+          showAuthMessage("メールアドレスとパスワードを入力してください。", true);
+          return;
+        }
+        try {
+          clearAuthMessage();
+          await signInWithEmailAndPassword(auth, email, password);
+          document.getElementById('auth-password').value = "";
+          showAuthMessage("ログインしました！", false);
+        } catch (err) {
+          console.error(err);
+          showAuthMessage("ログインに失敗しました: " + err.message, true);
+        }
+      };
+
+      // 新規登録
+      window.appSignup = async () => {
+        const email = document.getElementById('auth-email').value.trim();
+        const password = document.getElementById('auth-password').value;
+        if (!email || !password) {
+          showAuthMessage("メールアドレスとパスワードを入力してください。", true);
+          return;
+        }
+        if (password.length < 6) {
+          showAuthMessage("パスワードは6文字以上で入力してください。", true);
+          return;
+        }
+        try {
+          clearAuthMessage();
+          await createUserWithEmailAndPassword(auth, email, password);
+          document.getElementById('auth-password').value = "";
+          showAuthMessage("アカウントを作成しログインしました！", false);
+        } catch (err) {
+          console.error(err);
+          showAuthMessage("登録に失敗しました: " + err.message, true);
+        }
+      };
+
+      // ログアウト
+      window.appLogout = async () => {
+        try {
+          await signOut(auth);
+          showAuthMessage("ログアウトしました。", false);
+        } catch (err) {
+          console.error(err);
+          showAuthMessage("ログアウトに失敗しました。", true);
+        }
+      };
+
+    } catch (e) {
+      console.error("Firebase initialization error:", e);
+    }
+
+    function showAuthMessage(msg, isError) {
+      const el = document.getElementById('auth-message');
+      if (!el) return;
+      el.innerText = msg;
+      el.className = isError ? "text-xs text-rose-600 font-semibold" : "text-xs text-emerald-600 font-semibold";
+      el.classList.remove('hidden');
+    }
+
+    function clearAuthMessage() {
+      const el = document.getElementById('auth-message');
+      if (el) el.classList.add('hidden');
+    }
+  </script>
+
+  <script>
+    // アプリケーションロジック
+    let currentMode = 'fill';
+    let currentOrder = 'sequential';
+    let quizList = [];
+    let currentIndex = 0;
+    let userSessionResults = []; // { id, subIndex, jp, en, isCorrect, userAnswer }
+    let globalAudioEnabled = true;
+    let isAnswered = false;
+    let currentSubBlankIndex = 0;
+    let userBlankAnswers = [];
+    let selectedSortWords = [];
+    let currentAudioutterance = null;
+    let lastRenderedIndex = -1; // 複数空欄問題の判定用トラッカー
+
+    function toggleGlobalAudio() {
+      globalAudioEnabled = !globalAudioEnabled;
+      document.getElementById('audio-icon').innerText = globalAudioEnabled ? '🔊' : '🔇';
+      document.getElementById('audio-text').innerText = globalAudioEnabled ? '音声: ON' : '音声: OFF';
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.mode-select-btn').forEach(btn => {
+        if(btn.dataset.mode === mode) {
+          btn.className = "mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-indigo-600 bg-indigo-50 text-indigo-700";
+        } else {
+          btn.className = "mode-select-btn p-3 rounded-xl border text-sm font-medium transition text-left border-slate-200 bg-white text-slate-700 hover:bg-slate-50";
+        }
+      });
+      const badge = document.getElementById('quiz-mode-badge');
+      const names = { fill: '穴埋め四択', sort: '並べ替え', type: 'タイピング', trans: '和訳四択' };
+      badge.innerText = names[mode];
+    }
+
+    function setOrder(order) {
+      currentOrder = order;
+      if(order === 'sequential') {
+        document.getElementById('order-seq-btn').className = "p-2.5 rounded-xl border text-sm font-medium border-indigo-600 bg-indigo-50 text-indigo-700";
+        document.getElementById('order-shuffle-btn').className = "p-2.5 rounded-xl border text-sm font-medium border-slate-200 bg-white text-slate-700";
+      } else {
+        document.getElementById('order-shuffle-btn').className = "p-2.5 rounded-xl border text-sm font-medium border-indigo-600 bg-indigo-50 text-indigo-700";
+        document.getElementById('order-seq-btn').className = "p-2.5 rounded-xl border text-sm font-medium border-slate-200 bg-white text-slate-700";
+      }
+    }
+
+    function playAudio(text, callback) {
+      if (!globalAudioEnabled) {
+        if (callback) callback();
+        return;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        currentAudioutterance = utterance;
+        if (callback) {
+          utterance.onend = callback;
+        }
+        window.speechSynthesis.speak(utterance);
+      } else {
+        if (callback) callback();
+      }
+    }
+
+    function playCurrentAudio() {
+      if (quizList.length > 0 && quizList[currentIndex]) {
+        playAudio(quizList[currentIndex].en);
+      }
+    }
+
+    function startQuiz() {
+      const startInput = document.getElementById('range-start').value.trim();
+      const endInput = document.getElementById('range-end').value.trim();
+
+      // 出題範囲の入力バリデーション（整数のみ・小数や不正な文字を拒否）
+      const intRegex = /^\d+$/;
+      if (!intRegex.test(startInput) || !intRegex.test(endInput)) {
+        alert("出題範囲には609〜698の整数を入力してください（小数や不正な形式は受け付けません）。");
+        return;
+      }
+
+      const start = parseInt(startInput, 10);
+      const end = parseInt(endInput, 10);
+      const importantOnly = document.getElementById('important-only').checked;
+      const weaknessMode = document.getElementById('weakness-mode').checked;
+
+      if (start < 609 || start > 698 || end < 609 || end > 698) {
+        alert("出題範囲は609〜698の範囲で指定してください。");
+        return;
+      }
+      if (start > end) {
+        alert("開始番号は終了番号以下に設定してください。");
+        return;
+      }
+
+      let filtered = window.QUIZ_DATA.filter(q => q.id >= start && q.id <= end);
+      if (importantOnly) {
+        filtered = filtered.filter(q => q.important);
+      }
+
+      if (filtered.length === 0) {
+        alert("条件に一致する問題がありません。範囲や設定を確認してください。");
+        return;
+      }
+
+      if (weaknessMode) {
+        // 累積正答率に基づく並び替え
+        const history = JSON.parse(localStorage.getItem('quiz_history') || '{}');
+        filtered.sort((a, b) => {
+          const scoreA = history[a.id] ? history[a.id].correct / (history[a.id].total || 1) : 0;
+          const scoreB = history[b.id] ? history[b.id].correct / (history[b.id].total || 1) : 0;
+          return scoreA - scoreB; // 正答率が低いものを手前に
+        });
+      } else if (currentOrder === 'shuffle') {
+        filtered.sort(() => Math.random() - 0.5);
+      } else {
+        filtered.sort((a, b) => a.id - b.id);
+      }
+
+      quizList = filtered;
+      currentIndex = 0;
+      userSessionResults = [];
+      lastRenderedIndex = -1;
+
+      document.getElementById('screen-setup').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      document.getElementById('quiz-footer-nav').classList.remove('hidden');
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      isAnswered = false;
+      
+      // 新しい問題に移動したときのみ、空欄インデックスや回答状態を初期化する
+      if (lastRenderedIndex !== currentIndex) {
+        currentSubBlankIndex = 0;
+        userBlankAnswers = [];
+        lastRenderedIndex = currentIndex;
+      }
+
+      selectedSortWords = [];
+      
+      document.getElementById('quiz-feedback-area').classList.add('hidden');
+      document.getElementById('footer-next-btn').classList.add('hidden');
+      document.getElementById('footer-prev-btn').disabled = (currentIndex === 0);
+
+      const q = quizList[currentIndex];
+      const total = quizList.length;
+      
+      document.getElementById('quiz-progress-text').innerText = `第 ${currentIndex + 1} 問 / ${total} 問`;
+      document.getElementById('progress-bar-fill').style.width = `${((currentIndex + 1) / total) * 100}%`;
+      
+      let idLabel = `No. ${q.id}`;
+      if (currentMode === 'fill' && q.blanks && q.blanks.length > 1) {
+        idLabel += ` (${currentSubBlankIndex + 1} / ${q.blanks.length})`;
+      }
+      document.getElementById('quiz-id-label').innerText = idLabel;
+
+      if (currentMode === 'trans') {
+        document.getElementById('quiz-question-area').innerText = q.en;
+        if (globalAudioEnabled) {
+          playAudio(q.en);
+        }
+      } else {
+        document.getElementById('quiz-question-area').innerText = q.jp;
+      }
+
+      const subArea = document.getElementById('quiz-sub-area');
+      subArea.innerHTML = '';
+
+      if (currentMode === 'fill') {
+        const blankObj = q.blanks[currentSubBlankIndex];
+        let sentenceHtml = blankObj.sentence.replace('(  )', '<span class="text-indigo-600 font-black underline decoration-2 underline-offset-4">( ❓ )</span>');
+        subArea.innerHTML = `<p class="text-base text-slate-700 mb-4 font-mono">${sentenceHtml}</p><div class="grid grid-cols-2 gap-2" id="fill-options"></div>`;
+        
+        const optsContainer = document.getElementById('fill-options');
+        blankObj.choices.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = "w-full p-3 bg-white border border-slate-200 hover:bg-indigo-50 hover:border-indigo-300 rounded-xl text-left font-semibold text-slate-800 transition shadow-sm";
+          btn.innerText = opt;
+          btn.onclick = () => handleFillAnswer(opt, blankObj.answer);
+          optsContainer.appendChild(btn);
+        });
+      } else if (currentMode === 'sort') {
+        let words = [...q.sortWords];
+        subArea.innerHTML = `
+          <div class="space-y-4">
+            <div id="order-answer-slot" class="min-h-[104px] p-3 border-2 border-dashed border-indigo-200 rounded-xl bg-indigo-50/30 flex flex-wrap gap-2 items-start content-start"></div>
+            <div>
+              <button onclick="clearSortAnswer()" class="text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg mb-2 transition">🗑️ 解答をクリア</button>
+            </div>
+            <div id="order-pool-slot" class="flex flex-wrap gap-2"></div>
+            <button onclick="handleSortSubmit()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow transition">✨ 答え合わせする</button>
+          </div>
+        `;
+        renderSortCards(words);
+      } else if (currentMode === 'type') {
+        subArea.innerHTML = `
+          <div class="space-y-3">
+            <input type="text" id="type-input" placeholder="英文を入力..." class="w-full p-3.5 border border-slate-300 rounded-xl text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            <button onclick="handleTypeSubmit()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow transition">✨ 答え合わせする</button>
+          </div>
+        `;
+        setTimeout(() => document.getElementById('type-input')?.focus(), 100);
+      } else if (currentMode === 'trans') {
+        subArea.innerHTML = `<div class="grid grid-cols-1 gap-2" id="trans-options"></div>`;
+        const container = document.getElementById('trans-options');
+        q.transChoices.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = "w-full p-3.5 bg-white border border-slate-200 hover:bg-indigo-50 hover:border-indigo-300 rounded-xl text-left font-semibold text-slate-800 transition shadow-sm text-sm";
+          btn.innerText = opt;
+          btn.onclick = () => handleTransAnswer(opt, q.jp);
+          container.appendChild(btn);
+        });
+      }
+    }
+
+    function handleFillAnswer(selectedOpt, correctOpt) {
+      if (isAnswered) return;
+      const q = quizList[currentIndex];
+      userBlankAnswers.push({ selected: selectedOpt, correct: correctOpt });
+
+      if (q.blanks && currentSubBlankIndex < q.blanks.length - 1) {
+        currentSubBlankIndex++;
+        renderQuestion();
+      } else {
+        // すべての空欄回答完了
+        isAnswered = true;
+        const allCorrect = userBlankAnswers.every(b => b.selected === b.correct);
+        recordResult(allCorrect, userBlankAnswers.map(b => b.selected).join(', '));
+        showFeedback(allCorrect, q.en, q.jp);
+      }
+    }
+
+    let sortPoolWords = [];
+    function renderSortCards(words) {
+      sortPoolWords = words.map((w, idx) => ({ id: idx, word: w, used: false }));
+      updateSortDisplay();
+    }
+
+    function updateSortDisplay() {
+      const ansSlot = document.getElementById('order-answer-slot');
+      const poolSlot = document.getElementById('order-pool-slot');
+      if (!ansSlot || !poolSlot) return;
+
+      ansSlot.innerHTML = '';
+      poolSlot.innerHTML = '';
+
+      selectedSortWords.forEach((item, index) => {
+        const chip = document.createElement('span');
+        chip.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold rounded-lg text-sm cursor-pointer shadow-sm hover:bg-indigo-700 transition";
+        chip.innerText = item.word;
+        chip.onclick = () => unpickSortWord(index);
+        ansSlot.appendChild(chip);
+      });
+
+      sortPoolWords.forEach((item) => {
+        const chip = document.createElement('span');
+        if (item.used) {
+          chip.className = "px-3 py-1.5 bg-slate-100 text-slate-300 font-semibold rounded-lg text-sm cursor-not-allowed select-none border border-slate-200";
+        } else {
+          chip.className = "px-3 py-1.5 bg-white text-slate-700 border border-slate-200 font-semibold rounded-lg text-sm cursor-pointer shadow-sm hover:bg-indigo-50 hover:border-indigo-300 transition";
+          chip.onclick = () => pickSortWord(item.id);
+        }
+        chip.innerText = item.word;
+        poolSlot.appendChild(chip);
+      });
+    }
+
+    function pickSortWord(id) {
+      if (isAnswered) return;
+      const item = sortPoolWords.find(i => i.id === id);
+      if (item && !item.used) {
+        item.used = true;
+        selectedSortWords.push(item);
+        updateSortDisplay();
+      }
+    }
+
+    function unpickSortWord(index) {
+      if (isAnswered) return;
+      const removed = selectedSortWords.splice(index, 1)[0];
+      const item = sortPoolWords.find(i => i.id === removed.id);
+      if (item) item.used = false;
+      updateSortDisplay();
+    }
+
+    function clearSortAnswer() {
+      if (isAnswered) return;
+      selectedSortWords = [];
+      sortPoolWords.forEach(i => i.used = false);
+      updateSortDisplay();
+    }
+
+    function handleSortSubmit() {
+      if (isAnswered) return;
+      isAnswered = true;
+      const q = quizList[currentIndex];
+      const userStr = selectedSortWords.map(i => i.word).join(' ');
+      
+      let normUser = userStr.replace(/\s+([,.?!])/g, '$1').replace(/([“"'])\s+/g, '$1').replace(/\s+([”"'])/g, '$1').replace(/\s+/g, ' ').trim();
+      let normTarget = q.en.replace(/\s+([,.?!])/g, '$1').replace(/([“"'])\s+/g, '$1').replace(/\s+([”"'])/g, '$1').replace(/\s+/g, ' ').trim();
+      const isCorrect = (normUser === normTarget);
+
+      recordResult(isCorrect, userStr);
+      showFeedback(isCorrect, q.en, q.jp);
+    }
+
+    function handleTypeSubmit() {
+      if (isAnswered) return;
+      isAnswered = true;
+      const q = quizList[currentIndex];
+      const val = document.getElementById('type-input').value;
+      const normUser = val.replace(/\s+/g, ' ').trim().toLowerCase();
+      const normTarget = q.en.replace(/\s+/g, ' ').trim().toLowerCase();
+      const isCorrect = (normUser === normTarget);
+
+      recordResult(isCorrect, val);
+      showFeedback(isCorrect, q.en, q.jp);
+    }
+
+    function handleTransAnswer(selected, correct) {
+      if (isAnswered) return;
+      isAnswered = true;
+      const q = quizList[currentIndex];
+      const isCorrect = (selected === correct);
+
+      recordResult(isCorrect, selected);
+      showFeedback(isCorrect, q.en, q.jp);
+    }
+
+    function recordResult(isCorrect, userAns) {
+      const q = quizList[currentIndex];
+      const existing = userSessionResults.find(r => r.id === q.id);
+      if (!existing) {
+        userSessionResults.push({ id: q.id, jp: q.jp, en: q.en, isCorrect, userAnswer: userAns });
+        savePersistentHistory(q.id, isCorrect);
+      } else {
+        existing.isCorrect = isCorrect;
+        existing.userAnswer = userAns;
+      }
+    }
+
+    async function savePersistentHistory(id, isCorrect) {
+      const history = JSON.parse(localStorage.getItem('quiz_history') || '{}');
+      if (!history[id]) history[id] = { correct: 0, total: 0 };
+      history[id].total += 1;
+      if (isCorrect) history[id].correct += 1;
+      localStorage.setItem('quiz_history', JSON.stringify(history));
+
+      // ログイン中の場合はクラウドへ保存
+      if (window.currentAuthUser && window.db && window.doc && window.setDoc) {
+        try {
+          const userRef = window.doc(window.db, "users", window.currentAuthUser.uid);
+          await window.setDoc(userRef, {
+            history: history,
+            lastUpdated: new Date().toISOString()
+          }, { merge: true });
+        } catch (err) {
+          console.error("Firestore sync error:", err);
+          const msgEl = document.getElementById('auth-message');
+          if (msgEl) {
+            msgEl.innerText = "クラウド保存に失敗しました（ローカルのみ保存中）。";
+            msgEl.className = "text-xs text-rose-600 font-semibold";
+            msgEl.classList.remove('hidden');
+          }
+        }
+      }
+    }
+
+    function showFeedback(isCorrect, en, jp) {
+      const fbArea = document.getElementById('quiz-feedback-area');
+      const header = document.getElementById('feedback-header');
+      document.getElementById('feedback-en').innerText = en;
+      document.getElementById('feedback-jp').innerText = jp;
+
+      if (isCorrect) {
+        header.innerHTML = '<span class="text-emerald-600">⭕ 正解です！</span>';
+      } else {
+        header.innerHTML = '<span class="text-rose-600">❌ 不正解...</span>';
+      }
+
+      fbArea.classList.remove('hidden');
+      document.getElementById('footer-next-btn').classList.remove('hidden');
+
+      if (globalAudioEnabled) {
+        playAudio(en);
+      }
+    }
+
+    function goToNextQuestion() {
+      if (currentIndex < quizList.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResultScreen();
+      }
+    }
+
+    function goToPrevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    }
+
+    function retryCurrentQuestion() {
+      currentSubBlankIndex = 0;
+      userBlankAnswers = [];
+      renderQuestion();
+    }
+
+    function showResultScreen() {
+      document.getElementById('screen-quiz').classList.add('hidden');
+      document.getElementById('quiz-footer-nav').classList.add('hidden');
+      document.getElementById('screen-result').classList.remove('hidden');
+
+      const total = quizList.length;
+      const correctCount = userSessionResults.filter(r => r.isCorrect).length;
+      const rate = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+      document.getElementById('result-score-text').innerText = `${correctCount}問正解 / ${total}問出題`;
+      document.getElementById('result-rate-text').innerText = `正答率: ${rate}%`;
+
+      const wrongItems = userSessionResults.filter(r => !r.isCorrect);
+      const retryBtn = document.getElementById('retry-wrong-btn');
+      if (wrongItems.length > 0) {
+        retryBtn.classList.remove('hidden');
+      } else {
+        retryBtn.classList.add('hidden');
+      }
+
+      const tableContainer = document.getElementById('result-table-container');
+      tableContainer.innerHTML = '';
+      userSessionResults.forEach((res, idx) => {
+        const div = document.createElement('div');
+        div.className = `p-3 rounded-xl border text-sm flex items-center justify-between ${res.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'}`;
+        div.innerHTML = `
+          <div>
+            <span class="font-bold mr-2 text-slate-700">No. ${res.id}</span>
+            <span class="text-slate-600">${res.jp}</span>
+          </div>
+          <div class="font-bold ${res.isCorrect ? 'text-emerald-600' : 'text-rose-600'}">
+            ${res.isCorrect ? '⭕ 正解' : '❌ 不正解'}
+          </div>
+        `;
+        tableContainer.appendChild(div);
+      });
+    }
+
+    function retryWrongQuestions() {
+      const wrongIds = userSessionResults.filter(r => !r.isCorrect).map(r => r.id);
+      quizList = window.QUIZ_DATA.filter(q => wrongIds.includes(q.id));
+      currentIndex = 0;
+      userSessionResults = [];
+      lastRenderedIndex = -1;
+
+      document.getElementById('screen-result').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      document.getElementById('quiz-footer-nav').classList.remove('hidden');
+      renderQuestion();
+    }
+
+    function returnToSetup() {
+      document.getElementById('screen-result').classList.add('hidden');
+      document.getElementById('screen-setup').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
 
